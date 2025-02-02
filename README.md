@@ -82,3 +82,6 @@ Learn more about the power of Turborepo:
 - [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
 - [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
 - [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+-stars denotes that the dependencing will be pick up from the same project not from the npm resgistery
+-pnpm -> workspace:*
+-npm -> *
