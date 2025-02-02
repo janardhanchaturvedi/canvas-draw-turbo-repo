@@ -8,7 +8,10 @@
     "start": "tsc -b && node ./dist/index.js"
   },
   "devDependencies": {
-    "@repo/typescript-config": "workspace:*"
+    "@repo/typescript-config": "workspace:*",
+    "@types/ws": "^8.5.14",
+    "@repo/backend-common": "workspace:*",
+    "@repo/common": "workspace:*"
   },
   "keywords": [],
   "author": "",
