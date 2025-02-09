@@ -7,12 +7,29 @@ import { createRoomSchema, siginSchema, userSchema } from "@repo/common/types";
 import { prismaClient } from "@repo/db/client";
 
 app.post("/signup", (req, res) => {
-  const data = userSchema.safeParse(req.body);
-  if (!data.success) {
+  const parsedData = userSchema.safeParse(req.body);
+  if (!parsedData.success) {
     res.json({
       message: "Incorrect inputs",
     });
     return;
+  }
+
+  try {
+    prismaClient.user.create({
+      data: {
+        name: parsedData.data.name,
+        email: parsedData.data?.username,
+        password: parsedData.data.password,
+      },
+    });
+    res.json({
+      roomId: 123,
+    });
+  } catch (error) {
+    res.status(411).json({
+      message : "User is already exists"
+    })
   }
 
   res.json({
@@ -43,19 +60,20 @@ app.post("/signin", (req, res) => {
 
 app.post("/room", middleware, (req, res) => {
   //db call
-  const data = createRoomSchema.safeParse(req.body);
-  if (!data.success) {
+  const parsedData = createRoomSchema.safeParse(req.body);
+  if (!parsedData.success) {
     res.json({
       message: "Incorrect inputs",
     });
     return;
   }
+
   res.json({
     roomId: 123,
   });
 });
 
-app.get("/chat", (req, res) => {
-  
+app.get("/chat", (req, res) => {});
+app.listen(3005, () => {
+  console.log("The Http Backend server is started on the 3005");
 });
-app.listen(3005);
