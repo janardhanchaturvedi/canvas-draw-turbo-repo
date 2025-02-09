@@ -85,3 +85,7 @@ Learn more about the power of Turborepo:
 -stars denotes that the dependencing will be pick up from the same project not from the npm resgistery
 -pnpm -> workspace:*
 -npm -> *
+-npm prisma install
+-npx prisma init
+-npx prisma migrate -dev --name "name"
+-npx prisma generate
