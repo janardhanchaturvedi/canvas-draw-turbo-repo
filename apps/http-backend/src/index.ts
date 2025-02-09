@@ -4,6 +4,7 @@ import { JWT_SECRET } from "@repo/backend-common/config";
 import { middleware } from "./middleware";
 const app = express();
 import { createRoomSchema, siginSchema, userSchema } from "@repo/common/types";
+import { prismaClient } from "@repo/db/client";
 
 app.post("/signup", (req, res) => {
   const data = userSchema.safeParse(req.body);
@@ -52,5 +53,9 @@ app.post("/room", middleware, (req, res) => {
   res.json({
     roomId: 123,
   });
+});
+
+app.get("/chat", (req, res) => {
+  
 });
 app.listen(3005);
