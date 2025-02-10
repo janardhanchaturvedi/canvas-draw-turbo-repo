@@ -97,7 +97,22 @@ app.post("/room", middleware, async (req, res) => {
   }
 });
 
-app.get("/chat", (req, res) => {});
+app.get("/chats/:roomId", async (req, res) => {
+  const roomId = Number(req.params.roomId);
+  const messages = await prismaClient.chat.findMany({
+    where: {
+      id: roomId,
+    },
+    orderBy: {
+      id: "desc",
+    },
+    take: 50,
+  });
+
+  res.json({
+    messages,
+  });
+});
 app.listen(3005, () => {
   console.log("The Http Backend server is started on the 3005");
 });
