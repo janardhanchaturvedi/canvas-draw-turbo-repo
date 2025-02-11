@@ -113,6 +113,20 @@ app.get("/chats/:roomId", async (req, res) => {
     messages,
   });
 });
+
+app.get("/room/:slug", async (req, res) => {
+  const slug = req.params.slug;
+  const room = await prismaClient.room.findFirst({
+    where: {
+      slug,
+    },
+  });
+
+  res.json({
+    room,
+  });
+});
+
 app.listen(3005, () => {
   console.log("The Http Backend server is started on the 3005");
 });
