@@ -8,7 +8,8 @@
     "./code": "./src/code.tsx",
     "./container": "./src/container.tsx",
     "./typography": "./src/typography.tsx",
-    "./input": "./src/input.tsx"
+    "./input": "./src/input.tsx",
+    "./styles.css": "./styles.css"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
