@@ -8,7 +8,6 @@ import { prismaClient } from "@repo/db/client";
 app.use(express.json());
 app.post("/signup", async (req, res) => {
   const parsedData = userSchema.safeParse(req.body);
-  console.log("🚀 ~ app.post ~ parsedData:", parsedData);
   if (!parsedData.success) {
     res.json({
       message: "Incorrect inputs",
@@ -49,7 +48,6 @@ app.post("/signin", async (req, res) => {
       password: parseData?.data?.password,
     },
   });
-  console.log("🚀 ~ app.post ~ user:", user);
 
   if (!user) {
     res.status(403).json({
@@ -101,7 +99,7 @@ app.get("/chats/:roomId", async (req, res) => {
   const roomId = Number(req.params.roomId);
   const messages = await prismaClient.chat.findMany({
     where: {
-      id: roomId,
+      roomId: roomId,
     },
     orderBy: {
       id: "desc",

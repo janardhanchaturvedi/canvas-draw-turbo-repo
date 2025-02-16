@@ -15,15 +15,8 @@ export type ChatRoomClientProps = {
 };
 
 export function ChatRoomClient({ messages, id }: ChatRoomClientProps) {
-  console.log("🚀 ~ messages:", messages);
-
-  // Ensure `messages` is an array before setting it in state
   const [chats, setChats] = useState<Message[]>(Array.isArray(messages) ? messages : []);
-  console.log("🚀 ~ chats:", chats);
-
   const [currentMessage, setCurrentMessage] = useState("");
-  console.log("🚀 ~ currentMessage:", currentMessage);
-
   const { socket, loading } = useSocket();
 
   useEffect(() => {
@@ -38,8 +31,6 @@ export function ChatRoomClient({ messages, id }: ChatRoomClientProps) {
       socket.onmessage = (event) => {
         try {
           const parsedData = JSON.parse(event.data);
-          console.log("🚀 ~ useEffect ~ parsedData:", parsedData);
-
           if (parsedData.type === "chat") {
             setChats((prevChats) => [
               ...prevChats,
@@ -65,9 +56,8 @@ export function ChatRoomClient({ messages, id }: ChatRoomClientProps) {
         roomId: id,
         message: currentMessage,
       });
-      console.log("🚀 ~ handleSendMessage ~ data:", data);
       socket?.send(data);
-      setCurrentMessage(""); // Clear the input field after sending
+      setCurrentMessage("");
     }
   };
 
