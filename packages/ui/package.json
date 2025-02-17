@@ -2,6 +2,7 @@
   "name": "@repo/ui",
   "version": "0.0.0",
   "private": true,
+  "type": "module",
   "exports": {
     "./button": "./src/button.tsx",
     "./card": "./src/card.tsx",
@@ -9,7 +10,8 @@
     "./container": "./src/container.tsx",
     "./typography": "./src/typography.tsx",
     "./input": "./src/input.tsx",
-    "./styles.css": "./styles.css"
+    "./styles.css": "./styles.css",
+    "./components": "./src/components/index.ts"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
@@ -27,6 +29,7 @@
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.0.6",
+    "lucide-react": "^0.475.0",
     "postcss": "^8.5.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
