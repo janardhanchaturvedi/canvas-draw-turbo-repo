@@ -10,25 +10,12 @@ import WhyChooseUs from "./_components/HomePage/WhyChooseUs";
 function App() {
   return (
     <div className="min-h-screen bg-gray-900 text-white">
-      {/* Hero Section */}
       <HeroSection />
-
-      {/* Stats Section */}
       <StatsSection />
-
-      {/* Preview Section */}
       <PreviewSection />
-
-      {/* Features Grid */}
       <FeaturesGrid />
-
-      {/* Testimonials */}
       <Testimonials />
-
-      {/* Pricing */}
       <Pricing />
-
-      {/* Why Choose Us */}
       <WhyChooseUs />
     </div>
   );
