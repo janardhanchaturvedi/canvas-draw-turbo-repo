@@ -11,7 +11,7 @@
     "./typography": "./src/typography.tsx",
     "./input": "./src/input.tsx",
     "./styles.css": "./styles.css",
-    "./components": "./src/components/index.ts"
+    "./components": "./src/Components/index.ts"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
