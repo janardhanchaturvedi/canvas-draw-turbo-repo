@@ -13,23 +13,28 @@ export function SignUp({ isLogin = false }: { isLogin?: boolean }) {
     e.preventDefault();
     setLoading(true);
     setTimeout(() => setLoading(false), 1000);
+    // siginSchema
   };
 
   return (
-    <AuthLayout title="Create your account">
+    <AuthLayout
+      title={isLogin ? "Login with your credentials" : "Create your account"}
+    >
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="space-y-4">
-          <div className="relative">
-            <Input
-              label="Full Name"
-              type="text"
-              id="name"
-              placeholder="John Doe"
-              required
-              className="pl-10"
-            />
-            <User className="absolute left-3 top-[40px] h-5 w-5 text-gray-400" />
-          </div>
+          {!isLogin && (
+            <div className="relative">
+              <Input
+                label="Full Name"
+                type="text"
+                id="name"
+                placeholder="John Doe"
+                required
+                className="pl-10"
+              />
+              <User className="absolute left-3 top-[40px] h-5 w-5 text-gray-400" />
+            </div>
+          )}
 
           <div className="relative">
             <Input
@@ -56,13 +61,13 @@ export function SignUp({ isLogin = false }: { isLogin?: boolean }) {
           </div>
         </div>
 
-        <div >
+        <div>
           <Button type="submit" fullWidth disabled={loading}>
             {loading ? (
-              "Creating account..."
+              <>{isLogin ? "Loging" : "Creating account..."}</>
             ) : (
               <div className="flex items-center justify-center">
-                Create Account
+                {isLogin ? "Login" : "Create Account"}
                 <ArrowRight className="ml-2 h-4 w-4" />
               </div>
             )}
@@ -71,9 +76,12 @@ export function SignUp({ isLogin = false }: { isLogin?: boolean }) {
 
         <div className="text-center">
           <Text>
-            Already have an account?{" "}
-            <a href="/login" className="text-purple-400 hover:text-purple-300">
-              Sign in
+            {isLogin ? "Don't have an account" : "Already have an account?"}{" "}
+            <a
+              href={isLogin ? "/signup" : "/login"}
+              className="text-purple-400 hover:text-purple-300"
+            >
+              {isLogin ? "Sign Up" : "Sign in"}
             </a>
           </Text>
         </div>
