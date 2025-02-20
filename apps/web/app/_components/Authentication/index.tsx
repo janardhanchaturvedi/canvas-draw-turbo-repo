@@ -1,12 +1,12 @@
 "use client";
-import React, { useState } from 'react';
-import { Mail, Lock, User, ArrowRight } from 'lucide-react';
-import { AuthLayout } from './layout';
-import { Input } from '@repo/ui/input';
-import { Button } from '@repo/ui/button';
-import { Text } from '@repo/ui/typography';
+import React, { useState } from "react";
+import { Mail, Lock, User, ArrowRight } from "lucide-react";
+import { AuthLayout } from "./layout";
+import { Input } from "@repo/ui/input";
+import { Button } from "@repo/ui/button";
+import { Text } from "@repo/ui/typography";
 
-export function SignUp() {
+export function SignUp({ isLogin = false }: { isLogin?: boolean }) {
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -28,7 +28,7 @@ export function SignUp() {
               required
               className="pl-10"
             />
-            <User className="absolute left-3 top-[34px] h-5 w-5 text-gray-400" />
+            <User className="absolute left-3 top-[40px] h-5 w-5 text-gray-400" />
           </div>
 
           <div className="relative">
@@ -40,7 +40,7 @@ export function SignUp() {
               required
               className="pl-10"
             />
-            <Mail className="absolute left-3 top-[34px] h-5 w-5 text-gray-400" />
+            <Mail className="absolute left-3 top-[40px] h-5 w-5 text-gray-400" />
           </div>
 
           <div className="relative">
@@ -52,26 +52,26 @@ export function SignUp() {
               required
               className="pl-10"
             />
-            <Lock className="absolute left-3 top-[34px] h-5 w-5 text-gray-400" />
+            <Lock className="absolute left-3 top-[40px] h-5 w-5 text-gray-400" />
           </div>
         </div>
 
-        <div>
+        <div >
           <Button type="submit" fullWidth disabled={loading}>
             {loading ? (
-              'Creating account...'
+              "Creating account..."
             ) : (
-              <>
+              <div className="flex items-center justify-center">
                 Create Account
                 <ArrowRight className="ml-2 h-4 w-4" />
-              </>
+              </div>
             )}
           </Button>
         </div>
 
         <div className="text-center">
           <Text>
-            Already have an account?{' '}
+            Already have an account?{" "}
             <a href="/login" className="text-purple-400 hover:text-purple-300">
               Sign in
             </a>
