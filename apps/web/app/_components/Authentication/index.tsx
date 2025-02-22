@@ -8,21 +8,22 @@ import { AuthLayout } from "./layout";
 import { Input } from "@repo/ui/input";
 import { Button } from "@repo/ui/button";
 import { Text } from "@repo/ui/typography";
+import axiosInstance from "../../_helpers/axiosInstance";
 
-// Define the Zod schema
 const signUpSchema = z.object({
-  name: z.string().min(2, "Full Name must be at least 2 characters long").optional(),
+  name: z
+    .string()
+    .min(2, "Full Name must be at least 2 characters long")
+    .optional(),
   email: z.string().email("Invalid email address"),
   password: z.string().min(8, "Password must be at least 8 characters"),
 });
 
-// Type for the form data
 type SignUpFormData = z.infer<typeof signUpSchema>;
 
 export function SignUp({ isLogin = false }: { isLogin?: boolean }) {
   const [loading, setLoading] = useState(false);
 
-  // Initialize react-hook-form with Zod resolver
   const {
     register,
     handleSubmit,
@@ -31,10 +32,30 @@ export function SignUp({ isLogin = false }: { isLogin?: boolean }) {
     resolver: zodResolver(signUpSchema),
   });
 
-  const onSubmit = (data: SignUpFormData) => {
-    console.log(data);
+  const handleLogin = async (data: SignUpFormData) => {
     setLoading(true);
-    // Simulate API call
+    const response = await axiosInstance.post("auth/login", data);
+    if (response.status === 200) {
+      setLoading(false);
+      console.log(response.data);
+    }
+  };
+
+  const handleSignUp = async (data: SignUpFormData) => {
+    setLoading(true);
+    const response = await axiosInstance.post("auth/signup", data);
+    if (response.status === 200) {
+      setLoading(false);
+      console.log(response.data);
+    }
+  };
+  const onSubmit = (data: SignUpFormData) => {
+    setLoading(true);
+    if (isLogin) {
+      handleLogin(data);
+    } else {
+      handleSignUp(data);
+    }
     setTimeout(() => setLoading(false), 2000);
   };
 
