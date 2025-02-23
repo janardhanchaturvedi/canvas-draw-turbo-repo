@@ -14,7 +14,6 @@ app.use(
   })
 );
 app.post("/signup", async (req, res) => {
-  console.log("🚀 ~ app.post ~ req:", req);
   const parsedData = userSchema.safeParse(req.body);
   if (!parsedData.success) {
     res.json({
