@@ -5,8 +5,16 @@ import { middleware } from "./middleware";
 const app = express();
 import { createRoomSchema, siginSchema, userSchema } from "@repo/common/types";
 import { prismaClient } from "@repo/db/client";
+import cors from "cors";
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 app.post("/signup", async (req, res) => {
+  console.log("🚀 ~ app.post ~ req:", req);
   const parsedData = userSchema.safeParse(req.body);
   if (!parsedData.success) {
     res.json({
@@ -127,6 +135,12 @@ app.get("/room/:slug", async (req, res) => {
   } catch (error) {
     console.log("🚀 ~ app.get ~ error:", error);
   }
+});
+
+app.get("/info", (req, res) => {
+  res.json({
+    message: "Hello from the http backend",
+  });
 });
 
 app.listen(3005, () => {

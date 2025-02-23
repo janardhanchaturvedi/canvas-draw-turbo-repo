@@ -5,7 +5,6 @@ export function middleware(req: Request, res: Response, next: NextFunction) {
   const token = req.headers["authorization"] ?? "";
 
   const decoded = jwt.verify(token, JWT_SECRET);
-  console.log("🚀 ~ middleware ~ decoded:", decoded)
 
   if (decoded) {
     //@ts-ignore

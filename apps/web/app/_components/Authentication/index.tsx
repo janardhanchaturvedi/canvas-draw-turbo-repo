@@ -34,7 +34,7 @@ export function SignUp({ isLogin = false }: { isLogin?: boolean }) {
 
   const handleLogin = async (data: SignUpFormData) => {
     setLoading(true);
-    const response = await axiosInstance.post("auth/login", data);
+    const response = await axiosInstance.post("login", data);
     if (response.status === 200) {
       setLoading(false);
       console.log(response.data);
@@ -43,7 +43,7 @@ export function SignUp({ isLogin = false }: { isLogin?: boolean }) {
 
   const handleSignUp = async (data: SignUpFormData) => {
     setLoading(true);
-    const response = await axiosInstance.post("auth/signup", data);
+    const response = await axiosInstance.post("signup", data);
     if (response.status === 200) {
       setLoading(false);
       console.log(response.data);
